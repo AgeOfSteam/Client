@@ -1,0 +1,7 @@
+*
+
+#Except
+!.gitignore
+!config/
+!scripts/
+!resourcepacks/
