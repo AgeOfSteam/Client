@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<IfModInstalled name="chisel">
+	<ConfigSection>
+
+		<OptionDisplayGroup name='groupCustom' displayName='Custom' displayState='shown'>
+			<Description>
+				Distribution options for the Custom ores (overworld only).
+			</Description>
+		</OptionDisplayGroup>
+
+		<!--******************* Salt ***********************-->
+		<ConfigSection>
+
+			<OptionChoice name='SaltDist' default='layeredVeins' displayState='shown' displayGroup='groupCustom'>
+				<Description> Controls how Salt is generated </Description>
+				<DisplayName>Salt Type</DisplayName>
+				<Choice value='layeredVeins' displayValue='Veins'>
+					<Description>
+						Concentrated veins of Salt ore.
+					</Description>
+				</Choice>
+				<Choice value='strategicClouds' displayValue='Clouds'>
+					<Description>
+						Rare, sparsely populated clouds of ore extending over several chunks.
+					</Description>
+				</Choice>
+				<Choice value='none' displayValue='None' description='No Quartz is generated at all.'/>
+			</OptionChoice>
+
+			<OptionNumeric name='SaltFreq' default='1' min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupCustom'>
+				<Description> Frequency multiplier for Salt distributions </Description>
+				<DisplayName>Salt Freq.</DisplayName>
+			</OptionNumeric>
+
+			<OptionNumeric name='SaltSize' default='2' min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupCustom'>
+				<Description> Size multiplier for Salt distributions </Description>
+				<DisplayName>Salt Size</DisplayName>
+			</OptionNumeric>
+
+		</ConfigSection>
+		
+		<!--******************* Vanilla Quartz ***********************-->
+		<ConfigSection>
+
+			<OptionChoice name='VanillaQuartzDist' default='layeredVeins' displayState='shown' displayGroup='groupCustom'>
+				<Description> Controls how Quartz is generated </Description>
+				<DisplayName>Quartz Type</DisplayName>
+				<Choice value='layeredVeins' displayValue='Veins'>
+					<Description>
+						Concentrated veins of Quartz ore.
+					</Description>
+				</Choice>
+				<Choice value='strategicClouds' displayValue='Clouds'>
+					<Description>
+						Rare, sparsely populated clouds of ore extending over several chunks.
+					</Description>
+				</Choice>
+				<Choice value='none' displayValue='None' description='No Quartz is generated at all.'/>
+			</OptionChoice>
+
+			<OptionNumeric name='VanillaQuartzFreq' default='1' min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupCustom'>
+				<Description> Frequency multiplier for Quartz distributions </Description>
+				<DisplayName>Quartz Freq.</DisplayName>
+			</OptionNumeric>
+
+			<OptionNumeric name='VanillaQuartzSize' default='1' min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupCustom'>
+				<Description> Size multiplier for Quartz distributions </Description>
+				<DisplayName>Quartz Size</DisplayName>
+			</OptionNumeric>
+
+		</ConfigSection>
+
+		<!--******************* Certus Quartz ***********************-->
+		<ConfigSection>
+
+			<OptionChoice name='CertusQuartzDist' default='layeredVeins' displayState='shown' displayGroup='groupCustom'>
+			<Description> Controls how Certus Quartz is generated </Description>
+			<DisplayName>Certus Quartz Type</DisplayName>
+			<Choice value='layeredVeins' displayValue='Veins'>
+				<Description>
+					Concentrated veins of Certus Quartz ore.
+				</Description>
+			</Choice>
+			<Choice value='strategicClouds' displayValue='Clouds'>
+				<Description>
+					Rare, sparsely populated clouds of ore extending over several chunks.
+				</Description>
+			</Choice>
+			<Choice value='vanillaStdGen' displayValue='Clusters'>
+				<Description>
+					Small evenly scattered
+										clusters of ore. This is the
+										standard Certus Quartz generation.
+				</Description>
+			</Choice>
+			<Choice value='none' displayValue='None' description='No Certus Quartz is generated at all.'/>
+			</OptionChoice>
+
+			<OptionNumeric name='CertusQuartzFreq' default='1' min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupCustom'>
+				<Description> Frequency multiplier for Certus Quartz distributions </Description>
+				<DisplayName>CertusQuartz Freq.</DisplayName>
+			</OptionNumeric>
+
+			<OptionNumeric name='CertusQuartzSize' default='1' min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupCustom'>
+				<Description> Size multiplier for Certus Quartz distributions </Description>
+				<DisplayName>Certus Quartz Size</DisplayName>
+			</OptionNumeric>
+
+		</ConfigSection>
+
+	</ConfigSection>
+
+	<!--***************************** Distributions *************************************-->
+	<IfCondition condition=':= ?COGActive'>
+		
+		<!--******************* Salt Ore ***********************-->
+		<ConfigSection>
+			<IfCondition condition=':= if(age, age.SaltVeins > 0, VanillaQuartzDist = "layeredVeins")'>
+				<Veins name='SaltVeins' block='harvestcraft:salt:0' inherits='PresetSmallDeposits'>
+					<Description>
+						Small deposits of Salt that spawn in most Biomes.  Appears more commonly in Mountain Biomes.
+					</Description>
+					<DrawWireframe>:=drawWireframes</DrawWireframe>
+					<WireframeColor>0x40FF7E00</WireframeColor>
+					<Setting
+											name='MotherlodeFrequency'
+											avg=':= 3 * SaltFreq * if(age,age.SaltVeins,1) * _default_'/>
+					<Setting name='MotherlodeSize' avg=':= SaltSize * _default_' range=':= SaltSize * _default_'/>
+					<Setting name='MotherlodeHeight' avg=':= 56/64 * dimension.groundLevel' range=':= 10/64 * dimension.groundLevel' type='normal'/>
+				</Veins>
+				<Veins name='SaltVeinsMountain' inherits='SaltVeins'>
+					<Description> This roughly triples the chance of finding Salt in Mountain biomes. </Description>
+					<Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
+					<Setting name='MotherlodeHeight' avg=':= 128/64 * dimension.groundLevel' range=':= 20/64 * dimension.groundLevel' type='normal'/>
+					<BiomeType name='Mountain'/>
+				</Veins>
+			</IfCondition>
+
+			<IfCondition condition=':= if(age, age.SaltClouds > 0, SaltDist = "strategicClouds")'>
+				<Cloud name='QuartzCloud' block='harvestcraft:salt:0' inherits='PresetStrategicCloud'>
+					<Description>
+						Diffuse Quartz cloud surrounded by single-block "hint" veins, found in Mountain biomes.
+					</Description>
+					<DrawWireframe>:=drawWireframes</DrawWireframe>
+					<WireframeColor>0x40FF7E00</WireframeColor>
+					<Setting name='DistributionFrequency' avg=':= 2.5 * SaltFreq * if(age,age.SaltClouds,1) * _default_'/>
+					<Setting name='CloudRadius' avg=':= SaltSize * _default_' range=':= SaltSize * _default_'/>
+					<Setting name='CloudThickness' avg=':= SaltSize * _default_' range=':= SaltSize * _default_'/>
+					<BiomeType name='Mountain'/>
+					<Veins name='SaltHintVeins' block='harvestcraft:salt:0' inherits='PresetHintVeins'>
+						<DrawWireframe>:=drawWireframes</DrawWireframe>
+						<WireframeColor>0x40FF7E00</WireframeColor>
+						<Setting name='MotherlodeFrequency' avg=':= _default_' range=':= _default_'/>
+						<Setting name='MotherlodeRangeLimit' avg=':= SaltSize * _default_' range=':= SaltSize * _default_'/>
+					</Veins>
+				</Cloud>
+			</IfCondition>
+
+		</ConfigSection>
+
+		<!--******************* Vanilla Quartz ***********************-->
+		<ConfigSection>	
+			<IfCondition condition=':= if(age, age.QuartzVeins > 0, VanillaQuartzDist = "layeredVeins")'>
+				<Veins name='QuartzVeins' block='minecraft:quartz_block:0' inherits='PresetSmallDeposits'>
+					<Description>
+						Small deposits of Quartz that spawn in most Biomes.  Appears more commonly in Mountain Biomes.
+					</Description>
+					<DrawWireframe>:=drawWireframes</DrawWireframe>
+					<WireframeColor>0x40FF7E00</WireframeColor>
+					<Setting
+											name='MotherlodeFrequency'
+											avg=':= 3 * VanillaQuartzFreq * if(age,age.QuartzVeins,1) * _default_'/>
+					<Setting name='MotherlodeSize' avg=':= VanillaQuartzSize * _default_' range=':= VanillaQuartzSize * _default_'/>
+					<Setting name='MotherlodeHeight' avg=':= 56/64 * dimension.groundLevel' range=':= 10/64 * dimension.groundLevel' type='normal'/>
+				</Veins>
+				<Veins name='QuartzVeinsMountain' inherits='QuartzVeins'>
+					<Description> This roughly triples the chance of finding Quartz in Mountain biomes. </Description>
+					<Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
+					<Setting name='MotherlodeHeight' avg=':= 128/64 * dimension.groundLevel' range=':= 20/64 * dimension.groundLevel' type='normal'/>
+					<BiomeType name='Mountain'/>
+				</Veins>
+			</IfCondition>
+
+			<IfCondition condition=':= if(age, age.QuartzClouds > 0, VanillaQuartzDist = "strategicClouds")'>
+				<Cloud name='QuartzCloud' block='minecraft:quartz_block:0' inherits='PresetStrategicCloud'>
+					<Description>
+						Diffuse Quartz cloud surrounded by single-block "hint" veins, found in Mountain biomes.
+					</Description>
+					<DrawWireframe>:=drawWireframes</DrawWireframe>
+					<WireframeColor>0x40FF7E00</WireframeColor>
+					<Setting name='DistributionFrequency' avg=':= 2.5 * VanillaQuartzFreq * if(age,age.QuartzClouds,1) * _default_'/>
+					<Setting name='CloudRadius' avg=':= VanillaQuartzSize * _default_' range=':= VanillaQuartzSize * _default_'/>
+					<Setting name='CloudThickness' avg=':= VanillaQuartzSize * _default_' range=':= VanillaQuartzSize * _default_'/>
+					<BiomeType name='Mountain'/>
+					<Veins name='QuartzHintVeins' block='Custom:blockCustomOre:7' inherits='PresetHintVeins'>
+						<DrawWireframe>:=drawWireframes</DrawWireframe>
+						<WireframeColor>0x40FF7E00</WireframeColor>
+						<Setting name='MotherlodeFrequency' avg=':= _default_' range=':= _default_'/>
+						<Setting name='MotherlodeRangeLimit' avg=':= VanillaQuartzSize * _default_' range=':= VanillaQuartzSize * _default_'/>
+					</Veins>
+				</Cloud>
+			</IfCondition>
+
+		</ConfigSection>
+
+		<!--******************* Certus Quartz ***********************-->
+		<ConfigSection>
+
+			<IfCondition condition=':= if(age, age.CertusQuartzClusters > 0, CertusQuartzDist = "vanillaStdGen")'>
+				<StandardGen name='CertusQuartzStandard' block='appliedenergistics2:tile.BlockQuartz:0' inherits='PresetStandardGen'>
+					<Description> Equivalent to vanilla minecraft Certus Quartz distribution </Description>
+					<DrawWireframe>:=drawWireframes</DrawWireframe>
+					<WireframeColor>0x40E44D2E</WireframeColor>
+					<Setting name='Size'
+												 avg=':= 1/6 * CertusQuartzSize'/>
+					<Setting name='Frequency'
+												 avg=':= 1/10 * CertusQuartzFreq * if(age,age.CertusQuartzClusters,1) * _default_'/>
+					<Setting name='Height' avg=':= 52/64 * dimension.groundLevel' range=':= 20/64 * dimension.groundLevel'/>
+				</StandardGen>
+			</IfCondition>
+
+			<IfCondition condition=':= if(age, age.CertusQuartzVeins > 0, CertusQuartzDist = "layeredVeins")'>
+				<Veins name='CertusQuartzVeins' block='appliedenergistics2:tile.BlockQuartz:0' inherits='PresetSparseVeins'>
+				  <Description>
+					Certus Quartz in rare veins just under the surface.  It is more common in Ocean Biomes.
+				  </Description>
+				  <DrawWireframe>:=drawWireframes</DrawWireframe>
+				  <WireframeColor>0x40E44D2E</WireframeColor>
+				  <Setting name='MotherlodeFrequency' avg=':= 3.0 * CertusQuartzFreq * if(age,age.CertusQuartzVeins,1) * _default_'/>
+								  <Setting name='MotherlodeSize' avg=':= 0.8 * CertusQuartzSize * _default_' range=':= 0.8 * CertusQuartzSize * _default_'/>
+								  <Setting name='MotherlodeHeight' avg=':= 50/64 * dimension.groundLevel' range=':= 10/64 * dimension.groundLevel'/>
+								  <Setting name='BranchLength' avg=':= 0.75 * _default_' range=':= 0.75 * _default_'/>
+								  <Setting name='BranchInclination' avg='0' range='0.35'/>
+								  <Setting name='BranchHeightLimit' avg='12'/>
+								  <Setting name='SegmentRadius' avg=':= 0.6 * CertusQuartzSize * _default_' range=':= 0.6 * CertusQuartzSize * _default_'/>
+								  <Setting name='OreDensity' avg=':= 1.85 * _default_' range=':= _default_'/>
+				</Veins>
+				<Veins name='CertusQuartzVeinsOcean' inherits='CertusQuartzVeins'>
+				  <Description> This roughly triples the chance of finding Certus Quartz in ocean biomes. </Description>
+				  <Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
+				  <Setting
+									  name='MotherlodeHeight'
+									  avg=':= 0.5 * _default_'
+									  range=':= 0.5 * _default_'/>
+				  <Setting name='BranchHeightLimit' avg=':= 2 * _default_'/>
+				  <BiomeType name='ocean'/>
+				</Veins>
+			</IfCondition>
+
+			<IfCondition condition=':= if(age, age.CertusQuartzClouds > 0, CertusQuartzDist = "strategicClouds")'>
+				<Cloud name='CertusQuartzCloud' block='Custom:blockCustomOre:0' inherits='PresetStrategicCloud'>
+					<Description>
+						Diffuse CertusQuartz cloud surrounded by single-block "hint" veins, found in ocean biomes.
+					</Description>
+					<DrawWireframe>:=drawWireframes</DrawWireframe>
+					<WireframeColor>0x40E44D2E</WireframeColor>
+					<Setting name='DistributionFrequency' avg=':= 4.5 * CertusQuartzFreq * if(age,age.CertusQuartzClouds,1) * _default_'/>
+										<Setting name='CloudRadius' avg=':= 0.5 * CertusQuartzSize * _default_' range=':= 0.5 * CertusQuartzSize * _default_'/>
+										<Setting name='CloudThickness' avg=':= 0.5 * CertusQuartzSize * _default_' range=':= 0.5 * CertusQuartzSize * _default_'/>                
+										<Setting name='OreVolumeNoiseCutoff' avg='0'/>
+										<Biome name='.*' weight='0.2'/>
+					<BiomeType name='ocean'/>
+										<Setting name='CloudHeight' avg=':= 24/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal'/>
+					<Veins name='CertusQuartzHintVeins' block='Custom:blockCustomOre:0' inherits='PresetHintVeins'>
+						<DrawWireframe>:=drawWireframes</DrawWireframe>
+						<WireframeColor>0x40E44D2E</WireframeColor>
+						<Setting name='MotherlodeRangeLimit' avg=':= 0.5 * CertusQuartzSize * _default_' range=':= 0.5 * CertusQuartzSize * _default_'/>
+												<Setting name='MotherlodeHeight' avg=':= 24/64 * dimension.groundLevel' range=':= 8/64 * dimension.groundLevel' type='normal'/>
+					</Veins>
+				</Cloud>
+			</IfCondition>
+
+		</ConfigSection>
+	</IfCondition>
+</IfModInstalled>	
