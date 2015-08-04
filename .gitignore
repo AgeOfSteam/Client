@@ -1,6 +1,7 @@
 /*
 !.gitignore
 !/minecraft
+!README.md
 
 /minecraft/*
 !/minecraft/config/
