@@ -31,6 +31,8 @@ You May:
 - Fork / Copy individual configuration and script files for use in your own mod-pack.
 - NOT ask for help if you use these configurations or scripts for your own project and something breaks.
 
+Please use the issues tracker to provide bug reports, enhancement requests, or provide support in fixing issues.
+
 #Copyrights
 ALL Story (Text), Images, Video, and Audio produced for this Mod-pack are licensed under:
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License <http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode>
