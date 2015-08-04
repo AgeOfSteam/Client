@@ -1,12 +1,17 @@
 *
-/*
-!.gitignore
-!minecraft/
 
-minecraft/
-!minecraft/config/
-!minecraft/scripts/
-!minecraft/resourcepacks/
-!minecraft/config/*
-!minecraft/scripts/*
-!minecraft/resourcepacks/*
+!.gitignore
+
+!/minecraft/config/
+!/minecraft/scripts/
+!/minecraft/resourcepacks/
+!/minecraft/config/*
+!/minecraft/config/*/*
+!/minecraft/config/*/*/*
+!/minecraft/scripts/*
+!/minecraft/scripts/*/*
+!/minecraft/resourcepacks/*
+!/minecraft/resourcepacks/*/*
+!/minecraft/resourcepacks/*/*/*
+!/minecraft/resourcepacks/*/*/*/*
+!/minecraft/resourcepacks/*/*/*/*/*
