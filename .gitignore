@@ -1,0 +1,5 @@
+*
+!.gitignore
+!minecraft/config/*
+!minecraft/scripts/*
+!minecraft/resourcepacks/*
