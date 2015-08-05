@@ -30,5 +30,5 @@ recipes.removeShaped(<EnderIO:blockCapBank:1>, [[<ore:ingotIron>, <EnderIO:itemB
 
 // ================================================================================
 //#MARKER ADD SHAPED
-recipes.addShaped(<EnderIO:blockCapBank:1>, [[<ore:ingotElectricalSteel>, <EnderIO:itemBasicCapacitor>, <ore:ingotElectricalSteel>], [<GalacticraftCore:tile.machineTiered>, <GalacticraftCore:tile.machineTiered>, <GalacticraftCore:tile.machineTiered>], [<ore:ingotElectricalSteel>, <EnderIO:itemBasicCapacitor>, <ore:ingotElectricalSteel>]]);
+//recipes.addShaped(<EnderIO:blockCapBank:1>, [[<ore:ingotElectricalSteel>, <EnderIO:itemBasicCapacitor>, <ore:ingotElectricalSteel>], [<GalacticraftCore:tile.machineTiered>, <GalacticraftCore:tile.machineTiered>, <GalacticraftCore:tile.machineTiered>], [<ore:ingotElectricalSteel>, <EnderIO:itemBasicCapacitor>, <ore:ingotElectricalSteel>]]);
 

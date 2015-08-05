@@ -22,5 +22,4 @@ NEI.hide(<ThermalExpansion:Cell:1>);
 NEI.hide(<ThermalExpansion:Cell:3>);
 NEI.hide(<ThermalExpansion:Cell:2>);
 
-mods.thermalexpansion.Crucible.addRecipe(6400, <minecraft:packed_ice>, <liquid:water> * 4000);
-mods.thermalexpansion.Crucible.addRecipe(25600, <GalacticraftMars:tile.denseIce>, <liquid:water> * 16000);
+mods.thermalexpansion.Crucible.addRecipe(6400, <minecraft:packed_ice>, <liquid:water> * 8000);
