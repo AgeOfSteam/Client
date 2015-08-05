@@ -7,6 +7,10 @@
 !/minecraft/config/
 !/minecraft/scripts/
 !/minecraft/resourcepacks/
+
 !/minecraft/config/*
+/minecraft/config/MapWriterBlockColourOverrides.txt
+/minecraft/config/MapWriterBlockColours.txt
+
 !/minecraft/scripts/*
 !/minecraft/resourcepacks/*
