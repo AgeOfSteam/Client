@@ -87,12 +87,12 @@
                 <Choice value='none' displayValue='None' description='No iron is generated at all.'/>
             </OptionChoice>
             
-            <OptionNumeric name='ironFreq' default='0.5'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
+            <OptionNumeric name='ironFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
                 <Description> Frequency multiplier for Iron distributions </Description>
                 <DisplayName>Iron Freq.</DisplayName>
             </OptionNumeric>
             
-            <OptionNumeric name='ironSize' default='2'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
+            <OptionNumeric name='ironSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
                 <Description> Size multiplier for Iron distributions </Description>
                 <DisplayName>Iron Size</DisplayName>
             </OptionNumeric>    
@@ -123,12 +123,12 @@
                 <Choice value='none' displayValue='None' description='No gold is generated at all.'/>
             </OptionChoice>
             
-            <OptionNumeric name='goldFreq' default='0.5'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
+            <OptionNumeric name='goldFreq' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
                 <Description> Frequency multiplier for Gold distributions </Description>
                 <DisplayName>Gold Freq.</DisplayName>
             </OptionNumeric>
             
-            <OptionNumeric name='goldSize' default='2'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
+            <OptionNumeric name='goldSize' default='1'  min='0' max='5' displayState=':= if(?advOptions,"shown","hidden")' displayGroup='groupStdOres'>
                 <Description> Size multiplier for Gold distributions </Description>
                 <DisplayName>Gold Size</DisplayName>
             </OptionNumeric> 
@@ -392,10 +392,10 @@
                 <StandardGen name='IronStandard' block='minecraft:iron_ore' inherits='PresetStandardGen'> 
                     <Description> Equivalent to vanilla minecraft iron distribution </Description>
                     <DrawWireframe>:=drawWireframes</DrawWireframe>
-                    <WireframeColor>0x40221100</WireframeColor>
-					<Setting name='Height' avg=':= 1.5 * 64/64 * dimension.groundLevel' range=':= 1.5 * 64/64 * dimension.groundLevel'/> 
+                    <WireframeColor>0x40221100</WireframeColor> 
                     <Setting name='Size' avg=':= 2 * ironSize * _default_'/> 
                     <Setting name='Frequency' avg=':= ironFreq * _default_'/>
+                    <Setting name='Height' avg='48' range='48' scaleTo='sealevel'/> 
                 </StandardGen> 
             </IfCondition>
             
@@ -408,7 +408,7 @@
                     <WireframeColor>0x40221100</WireframeColor> 
                     <Setting name='MotherlodeFrequency' avg=':= 0.9 * ironFreq * _default_'/>
                     <Setting name='MotherlodeSize' avg=':= ironSize * _default_' range=':= ironSize * _default_'/>
-                    <Setting name='MotherlodeHeight' avg='96'
+                    <Setting name='MotherlodeHeight' avg='43'
                              range='10.5' type='normal' scaleTo='sealevel'/>
                     <Setting name='BranchHeightLimit' avg='10.5'/>
                     <Setting name='SegmentRadius' avg=':= ironSize * _default_' range=':= ironSize * _default_'/>
@@ -455,7 +455,7 @@
                     <DrawWireframe>:=drawWireframes</DrawWireframe>
                     <WireframeColor>0x40443300</WireframeColor> 
                     <Setting name='Size' avg=':= goldSize * _default_'/> 
-                    <Setting name='Frequency' avg=':= 0.25 * goldFreq * _default_'/>
+                    <Setting name='Frequency' avg=':= 0.2 * goldFreq * _default_'/>
                     <Setting name='Height' avg=':= 16/64 * dimension.groundLevel' range=':= 16/64 * dimension.groundLevel'/>
                 </StandardGen> 
             </IfCondition>

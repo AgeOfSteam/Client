@@ -53,8 +53,7 @@
 	<DisplayName>TC Aluminum Size</DisplayName>
       </OptionNumeric>
       
-    </ConfigSection>
-    
+    </ConfigSection> 
   </ConfigSection>
 
   <!--***************************** Distributions *************************************
@@ -158,7 +157,6 @@
       </IfCondition>
       
     </ConfigSection>
-   
   </IfCondition>
 
 </IfModInstalled>

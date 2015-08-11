@@ -140,7 +140,14 @@
 			<Comment>
 				The global option deferredPopulationRange must be large enough to catch all ore clusters (>= 32).
 			</Comment>
-			<Replaces block='Thaumcraft:blockCustomOre'/>
+			<Replaces block='Thaumcraft:blockCustomOre:0'/>
+			<Replaces block='Thaumcraft:blockCustomOre:1'/>
+			<Replaces block='Thaumcraft:blockCustomOre:2'/>
+			<Replaces block='Thaumcraft:blockCustomOre:3'/>
+			<Replaces block='Thaumcraft:blockCustomOre:4'/>
+			<Replaces block='Thaumcraft:blockCustomOre:5'/>
+			<Replaces block='Thaumcraft:blockCustomOre:6'/>
+			<Replaces block='Thaumcraft:blockCustomOre:7'/>
 			<Comment>
 				The above is the block that contains all the ores used in Thamucraft.
 			</Comment>
@@ -158,20 +165,20 @@
 					<WireframeColor>0x40FF7E00</WireframeColor>
 					<Setting
                                             name='MotherlodeFrequency'
-                                            avg=':= 3 * AmberStoneFreq * if(age,age.AmberVeins,1) * _default_'/>
+                                            avg=':= AmberStoneFreq * if(age,age.AmberVeins,1) * _default_'/>
 					<Setting name='MotherlodeSize' avg=':= AmberStoneSize * _default_' range=':= AmberStoneSize * _default_'/>
 					<Setting name='MotherlodeHeight' avg=':= 56/64 * dimension.groundLevel' range=':= 10/64 * dimension.groundLevel' type='normal'/>
 				</Veins>
 				<Veins name='AmberVeinsMountain' inherits='AmberVeins'>
 					<Description> This roughly triples the chance of finding Amber in Mountain biomes. </Description>
-					<Setting name='MotherlodeFrequency' avg=':= 2 * _default_'/>
+					<Setting name='MotherlodeFrequency' avg=':= 0.75 * _default_'/>
 					<Setting name='MotherlodeHeight' avg=':= 80/64 * dimension.groundLevel' range=':= 20/64 * dimension.groundLevel' type='normal'/>
 					<BiomeType name='Mountain'/>
 				</Veins>
 			</IfCondition>
 
 			<IfCondition condition=':= if(age, age.AmberClouds > 0, AmberStoneDist = "strategicClouds")'>
-				<Cloud name='AmberCloud' block='Thaumcraft:blockCustomOre:7' inherits='PresetStrategicCloud'>
+				<Cloud name='AmberCloud' block='Thaumcraft:blockCosmeticOpaque:0' inherits='PresetStrategicCloud'>
 					<Description>
 						Diffuse Amber cloud surrounded by single-block "hint" veins, found in Mountain biomes.
 					</Description>
@@ -181,7 +188,7 @@
 					<Setting name='CloudRadius' avg=':= AmberStoneSize * _default_' range=':= AmberStoneSize * _default_'/>
 					<Setting name='CloudThickness' avg=':= AmberStoneSize * _default_' range=':= AmberStoneSize * _default_'/>
 					<BiomeType name='Mountain'/>
-					<Veins name='AmberHintVeins' block='Thaumcraft:blockCustomOre:7' inherits='PresetHintVeins'>
+					<Veins name='AmberHintVeins' block='Thaumcraft:blockCosmeticOpaque:0' inherits='PresetHintVeins'>
 						<DrawWireframe>:=drawWireframes</DrawWireframe>
 						<WireframeColor>0x40FF7E00</WireframeColor>
 						<Setting name='MotherlodeFrequency' avg=':= _default_' range=':= _default_'/>
