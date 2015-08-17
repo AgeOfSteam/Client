@@ -24,11 +24,11 @@ You May:
 Please use the issues tracker to provide bug reports, enhancement requests, or provide support in fixing issues.
 
 #FAQ
-Q: Where is the mods folder and jars?
-A: Wrong location, I'll provide a link to the completed modpack upon release.
+- Q: Where is the mods folder and jars?
+- A: Wrong location, I'll provide a link to the completed modpack upon release.
 
-Q: Why use github?
-A: To encourage others to participate in the configuration, development, and bug reporting for this pack.
+- Q: Why use github?
+- A: To encourage others to participate in the configuration, development, and bug reporting for this pack.
 
 #Copyrights
 ALL Story (Text), Images, Video, and Audio produced for this Mod-pack, by me, are licensed under:
