@@ -10,7 +10,7 @@ Add MineColony. (Not Public ATM)
 Add Server Pack. (When Client is optimized, not a moment sooner!)
 
 #Permissions
-Mod permission list is available here:
+Mod permission list is available here: (Preliminary)
 https://onedrive.live.com/redir?resid=A11528E205775504!783&authkey=!AG9PpieWhMPMXLg&ithint=file%2cxlsx
 
 Forking this repository does NOT TRANSFER permissions granted from mod authors, where permissions is required.
